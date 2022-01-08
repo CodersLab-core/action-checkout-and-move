@@ -1,0 +1,34 @@
+name: Checkout repositotory
+description: Checkout repository to specified dir (even if destination dir is not empty)
+
+inputs:
+  repository:
+    description: "Repository to checkout"
+    required: true
+  dest-path:
+    description: "Move repository content to specified path"
+    required: true
+  token:
+    description: "Personal access token"
+    required: false
+    default: ""
+  tmp-path:
+    description: "Temporary checkout dir"
+    default: tmp-shared-actions
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout shared actions repo
+      uses: actions/checkout@v2
+      with:
+        repository: ${{ inputs.repository }}
+        path: ${{ inputs.tmp-path }}
+        token: ${{ inputs.token }}
+    - name: Move repository content to specified dir
+      shell: bash
+      run: |
+        mkdir -p ${{ inputs.dest-path }}
+        mv ${{ inputs.tmp-path }}/* ${{ inputs.dest-path }}
+        rm -Rf ${{ inputs.tmp-path }}
