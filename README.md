@@ -4,7 +4,7 @@ Checkout repository to specified dir (even if destination dir is not empty)
 
 <!-- start usage -->
 ```yaml
-- uses: Coderslab-core/checkout-and-move@v2
+- uses: Coderslab-core/action-checkout-and-move@v2
   with: 
     # Repository name with owner. For example, Coderslab-core/shared-actions
     # Required: yes
