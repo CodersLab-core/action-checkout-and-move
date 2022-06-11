@@ -21,7 +21,7 @@ runs:
   using: composite
   steps:
     - name: Checkout shared actions repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v2.4.2
       with:
         repository: ${{ inputs.repository }}
         path: ${{ inputs.tmp-path }}
